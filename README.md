@@ -1,4 +1,4 @@
-<img src="src/main/resources/assets/baby_powder/icon.png" width="128">
+<img src="src/main/resources/assets/chronopyre/icon.png" width="128">
 
 # Chronopyre
 
