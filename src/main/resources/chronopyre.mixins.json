@@ -14,7 +14,8 @@
         "UpdateRestersOnTrackingStartAndEnd",
         "CampfireUnlitByDefault",
         "ServerPlayerBedAccessor",
-        "DisableSleeping"
+        "DisableSleeping",
+        "CatRelaxByCampfire"
     ],
 
     "injectors": {
