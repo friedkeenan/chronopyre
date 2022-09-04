@@ -2,39 +2,60 @@ package io.github.friedkeenan.chronopyre.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.Redirect;
+
+import com.mojang.datafixers.util.Either;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.player.Player.BedSleepingProblem;
 import net.minecraft.world.level.block.BedBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 @Mixin(BedBlock.class)
 public class DisableSleeping {
-    @Inject(
+    @Redirect(
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/world/entity/player/Player;startSleepInBed(Lnet/minecraft/core/BlockPos;)Lcom/mojang/datafixers/util/Either;"
         ),
 
-        method      = "use",
-        cancellable = true
+        method      = "use"
     )
-    private void disableSleepingUsingBeds(
-        BlockState      state,
-        Level           level,
-        BlockPos        pos,
-        Player          player,
-        InteractionHand hand,
-        BlockHitResult  hit_result,
+    private Either<BedSleepingProblem, Unit> disallowSleepingUsingBeds(Player player, BlockPos pos) {
+        /* We still allow setting the respawn point, just not sleeping. */
 
-        CallbackInfoReturnable<InteractionResult> info
-    ) {
-        info.setReturnValue(InteractionResult.PASS);
+        if (!(player instanceof ServerPlayer)) {
+            return Either.right(Unit.INSTANCE);
+        }
+
+        final var server_player = (ServerPlayer) player;
+
+        Direction direction = server_player.level.getBlockState(pos).getValue(HorizontalDirectionalBlock.FACING);
+
+        if (server_player.isSleeping() || !server_player.isAlive()) {
+            return Either.left(Player.BedSleepingProblem.OTHER_PROBLEM);
+        }
+
+        if (!server_player.level.dimensionType().natural()) {
+            return Either.left(Player.BedSleepingProblem.NOT_POSSIBLE_HERE);
+        }
+
+        final var bed_accessor = (ServerPlayerBedAccessor) server_player;
+
+        if (!bed_accessor.invokeBedInRange(pos, direction)) {
+            return Either.left(Player.BedSleepingProblem.TOO_FAR_AWAY);
+        }
+
+        if (bed_accessor.invokeBedBlocked(pos, direction)) {
+            return Either.left(Player.BedSleepingProblem.OBSTRUCTED);
+        }
+
+        server_player.setRespawnPosition(server_player.level.dimension(), pos, server_player.getYRot(), false, true);
+
+        return Either.right(Unit.INSTANCE);
     }
 }
