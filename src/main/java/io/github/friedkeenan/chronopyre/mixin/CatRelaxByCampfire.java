@@ -97,7 +97,11 @@ public class CatRelaxByCampfire {
 
         method = "giveMorningGift"
     )
-    private boolean disableTeleport(Cat cat, double x, double y, double z, boolean broadcast_event) {
+    private boolean disableTeleportWhenResting(Cat cat, double x, double y, double z, boolean broadcast_event) {
+        if (this.ownerPlayer.isSleeping()) {
+            return cat.randomTeleport(x, y, z, broadcast_event);
+        }
+
         return true;
     }
 }
