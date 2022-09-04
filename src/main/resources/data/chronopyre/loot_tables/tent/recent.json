@@ -1,0 +1,63 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 1.0,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:flint_and_steel",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_damage",
+                            "damage": {
+                                "type": "minecraft:uniform",
+                                "min": 0.0,
+                                "max": 0.0625
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "rolls": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 5.0
+            },
+            "entries": [
+                {
+                    "type": "minecraft:empty",
+                    "weight": 3
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:potato",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "type": "minecraft:uniform",
+                                "min": 1,
+                                "max": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:rabbit"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:beef"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:salmon"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "block.minecraft.campfire.rest.resting": "Resting until morning...",
+    "block.minecraft.campfire.rest.cancel": "Resting has been canceled",
+    "block.minecraft.campfire.rest.players_resting": "%d/%d players resting",
+    "block.minecraft.campfire.rest.already_resting": "You are already resting at another campfire",
+    "block.minecraft.campfire.rest.impossible": "No amount of rest can pass the time",
+    "block.minecraft.campfire.rest.not_allowed_in_dimension": "You may not rest in this dimension",
+    "block.minecraft.campfire.rest.unlit": "You may not rest now; the campfire is unlit",
+    "block.minecraft.campfire.rest.not_possible_now": "You may only rest at night or during thunderstorms"
+}

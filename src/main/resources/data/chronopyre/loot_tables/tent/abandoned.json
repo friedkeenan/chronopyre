@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 1.0,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:flint_and_steel",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_damage",
+                            "damage": {
+                                "type": "minecraft:uniform",
+                                "min": 0.0,
+                                "max": 0.0625
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

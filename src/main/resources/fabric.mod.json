@@ -1,0 +1,42 @@
+{
+    "schemaVersion": 1,
+    "id": "chronopyre",
+    "version": "${version}",
+
+    "name": "Chronopyre",
+    "description": "Speed up the night by resting at a campfire!",
+    "authors": [
+        "friedkeenan"
+    ],
+
+    "contact": {
+        "homepage": "https://github.com/friedkeenan/chronopyre",
+        "sources": "https://github.com/friedkeenan/chronopyre",
+        "issues": "https://github.com/friedkeenan/chronopyre/issues"
+    },
+
+    "license": "ISC",
+    "icon": "assets/chronopyre/icon.png",
+
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "io.github.friedkeenan.chronopyre.ChronopyreMod"
+        ],
+
+        "client": [
+            "io.github.friedkeenan.chronopyre.ChronopyreClientMod"
+        ]
+    },
+
+    "mixins": [
+        "chronopyre.mixins.json"
+    ],
+
+    "depends": {
+        "fabricloader": ">=0.14.9",
+        "fabric-api": "*",
+        "minecraft": "~1.19",
+        "java": ">=17"
+    }
+}

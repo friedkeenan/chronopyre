@@ -1,0 +1,195 @@
+{
+    "name": "chronopyre:tent",
+    "fallback": "minecraft:empty",
+    "elements": [
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/red/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/red/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/red/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/green/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/green/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/green/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/blue/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/blue/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/blue/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/gray/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/gray/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/gray/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/brown/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/brown/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/brown/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/black/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/black/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/black/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/orange/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/orange/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/orange/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        }
+    ]
+}
