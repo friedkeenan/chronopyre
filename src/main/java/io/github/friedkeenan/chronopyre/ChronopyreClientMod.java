@@ -15,7 +15,6 @@ public class ChronopyreClientMod implements ClientModInitializer {
                 final var rest_pos = buf.readBlockPos();
                 final var rest_state = client.level.getBlockState(rest_pos);
 
-                // CampfireBlock.dowse(null, client.level, rest_pos, rest_state);
                 client.execute(() -> CampfireBlock.dowse(null, client.level, rest_pos, rest_state));
             }
         );

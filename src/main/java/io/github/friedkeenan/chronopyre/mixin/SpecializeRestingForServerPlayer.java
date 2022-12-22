@@ -3,7 +3,6 @@ package io.github.friedkeenan.chronopyre.mixin;
 import java.util.Optional;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -18,7 +17,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,9 +32,8 @@ public abstract class SpecializeRestingForServerPlayer extends AddRestingToPlaye
         super(entityType, level);
     }
 
-    @Shadow
-    private void resetStat(Stat<?> stat) {
-        throw new AssertionError();
+    private ServerPlayer asServerPlayer() {
+        return (ServerPlayer) (Object) this;
     }
 
     @Override
@@ -63,7 +60,7 @@ public abstract class SpecializeRestingForServerPlayer extends AddRestingToPlaye
 
         final var maybe_problem = super.startResting(level, state, pos);
 
-        this.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
+        this.asServerPlayer().resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
 
         ((RestHandler) this.level).updateRestingPlayerList();
 

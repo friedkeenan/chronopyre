@@ -16,7 +16,7 @@ public class UpdateRestersOnGameModeChange {
             target = "Lnet/minecraft/server/level/ServerLevel;updateSleepingPlayerList()V"
         ),
 
-        method = "setGameModeForPlayer"
+        method = "changeGameModeForPlayer"
     )
     private void updateResters(ServerLevel level) {
         level.updateSleepingPlayerList();
