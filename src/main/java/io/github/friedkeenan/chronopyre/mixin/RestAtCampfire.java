@@ -2,8 +2,9 @@ package io.github.friedkeenan.chronopyre.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.sugar.Local;
 
 import io.github.friedkeenan.chronopyre.Rester;
 import net.minecraft.core.BlockPos;
@@ -13,30 +14,27 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(CampfireBlock.class)
 public class RestAtCampfire {
-    @Inject(at = @At("TAIL"), method = "use", cancellable = true)
-    private void startRestingOnUse(
-        BlockState      state,
-        Level           level,
-        BlockPos        pos,
-        Player          player,
-        InteractionHand hand,
-        BlockHitResult  hit_result,
+    @ModifyReturnValue(at = @At("RETURN"), method = "use")
+    private InteractionResult startRestingOnUse(
+        InteractionResult original,
 
-        CallbackInfoReturnable<InteractionResult> info
+        @Local(argsOnly = true) BlockState      state,
+        @Local(argsOnly = true) Level           level,
+        @Local(argsOnly = true) BlockPos        pos,
+        @Local(argsOnly = true) Player          player,
+        @Local(argsOnly = true) InteractionHand hand
     ) {
-        final var result = info.getReturnValue();
 
-        if (result != InteractionResult.PASS) {
-            return;
+        if (original != InteractionResult.PASS) {
+            return original;
         }
 
         /* Require an empty main hand to rest. */
         if (!player.getItemInHand(hand).isEmpty() || hand != InteractionHand.MAIN_HAND) {
-            return;
+            return InteractionResult.PASS;
         }
 
         final var rester = (Rester) player;
@@ -49,6 +47,6 @@ public class RestAtCampfire {
             );
         }
 
-        info.setReturnValue(InteractionResult.SUCCESS);
+        return InteractionResult.SUCCESS;
     }
 }
