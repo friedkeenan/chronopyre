@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import io.github.friedkeenan.chronopyre.Rester;
 import io.github.friedkeenan.chronopyre.RestingProblem;
@@ -100,7 +102,7 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
         }
     }
 
-    @Redirect(
+    @WrapOperation(
         at = @At(
             value   = "INVOKE",
             target  = "Lnet/minecraft/world/entity/player/Player;isSleeping()Z",
@@ -109,7 +111,7 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
 
         method = "tick"
     )
-    private boolean preventTimeSinceLastRestAward(Player player) {
-        return player.isSleeping() || ((Rester) player).isResting();
+    private boolean grantTimeSinceLastRestAward(Player player, Operation<Boolean> original) {
+        return original.call(player) || ((Rester) player).isResting();
     }
 }

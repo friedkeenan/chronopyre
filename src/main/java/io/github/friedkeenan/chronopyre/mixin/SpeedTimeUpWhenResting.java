@@ -6,8 +6,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import io.github.friedkeenan.chronopyre.RestHandler;
 import io.github.friedkeenan.chronopyre.RestStatus;
@@ -16,8 +17,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetTimePacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.GameRules.BooleanValue;
-import net.minecraft.world.level.GameRules.Key;
 
 @Mixin(ServerLevel.class)
 public class SpeedTimeUpWhenResting implements RestHandler {
@@ -92,19 +91,19 @@ public class SpeedTimeUpWhenResting implements RestHandler {
         );
     }
 
-    @Redirect(
+    @ModifyExpressionValue(
         at = @At(
             value  = "INVOKE",
             target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"
         ),
         method = "tickTime"
     )
-    private boolean shouldDoNormalTimeAdvance(GameRules rules, Key<BooleanValue> key) {
+    private boolean shouldDoNormalTimeAdvance(boolean original) {
         if (this.target_time >= 0) {
             return false;
         }
 
-        return rules.getBoolean(key);
+        return original;
     }
 
     @Shadow

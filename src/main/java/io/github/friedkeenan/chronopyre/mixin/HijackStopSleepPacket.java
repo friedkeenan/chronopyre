@@ -2,7 +2,9 @@ package io.github.friedkeenan.chronopyre.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import io.github.friedkeenan.chronopyre.Rester;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -10,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 
 @Mixin(ClientPacketListener.class)
 public class HijackStopSleepPacket {
-    @Redirect(
+    @WrapOperation(
         at = @At(
             value  = "INVOKE",
             target = "Lnet/minecraft/world/entity/player/Player;stopSleepInBed(ZZ)V"
@@ -18,11 +20,11 @@ public class HijackStopSleepPacket {
 
         method = "handleAnimate"
     )
-    private void StopSleepOrRest(Player player, boolean reset_sleep_timer, boolean update_sleeping_list) {
+    private void stopSleepOrRest(Player player, boolean reset_sleep_timer, boolean update_sleeping_list, Operation<Void> original) {
         final var rester = (Rester) player;
 
         if (player.isSleeping()) {
-            player.stopSleepInBed(reset_sleep_timer, update_sleeping_list);
+            original.call(player, reset_sleep_timer, update_sleeping_list);
         } else if (rester.isResting()) {
             ((Rester) player).stopResting(update_sleeping_list);
         }
