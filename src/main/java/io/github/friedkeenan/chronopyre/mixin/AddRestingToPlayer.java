@@ -16,7 +16,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -99,13 +98,6 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
     @Inject(at = @At("HEAD"), method = "tick")
     private void validateResting(CallbackInfo info) {
         if (this.isResting() && !this.checkCampfireIsValid()) {
-            this.stopResting(true);
-        }
-    }
-
-    @Inject(at = @At("TAIL"), method = "actuallyHurt")
-    private void makeDamageStopResting(DamageSource source, float damage, CallbackInfo info) {
-        if (this.isResting()) {
             this.stopResting(true);
         }
     }
