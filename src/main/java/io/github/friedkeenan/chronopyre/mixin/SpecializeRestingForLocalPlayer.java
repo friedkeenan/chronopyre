@@ -19,6 +19,8 @@ public abstract class SpecializeRestingForLocalPlayer extends AddRestingToPlayer
 
     @Inject(at = @At("TAIL"), method = "actuallyHurt")
     private void makeDamageStopResting(DamageSource source, float damage, CallbackInfo info) {
-        this.stopResting(true);
+        if (this.isResting()) {
+            this.stopResting(true);
+        }
     }
 }

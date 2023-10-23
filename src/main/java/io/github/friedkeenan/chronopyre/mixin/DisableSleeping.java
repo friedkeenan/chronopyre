@@ -43,13 +43,13 @@ public class DisableSleeping {
 
         final var server_player = (ServerPlayer) player;
 
-        Direction direction = server_player.level.getBlockState(pos).getValue(HorizontalDirectionalBlock.FACING);
+        Direction direction = server_player.level().getBlockState(pos).getValue(HorizontalDirectionalBlock.FACING);
 
         if (server_player.isSleeping() || !server_player.isAlive()) {
             return Either.left(Player.BedSleepingProblem.OTHER_PROBLEM);
         }
 
-        if (!server_player.level.dimensionType().natural()) {
+        if (!server_player.level().dimensionType().natural()) {
             return Either.left(Player.BedSleepingProblem.NOT_POSSIBLE_HERE);
         }
 
@@ -63,7 +63,7 @@ public class DisableSleeping {
             return Either.left(Player.BedSleepingProblem.OBSTRUCTED);
         }
 
-        server_player.setRespawnPosition(server_player.level.dimension(), pos, server_player.getYRot(), false, true);
+        server_player.setRespawnPosition(server_player.level().dimension(), pos, server_player.getYRot(), false, true);
 
         return Either.right(Unit.INSTANCE);
     }

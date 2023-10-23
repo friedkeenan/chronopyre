@@ -190,6 +190,33 @@
                 "projection": "rigid",
                 "processors": "minecraft:empty"
             }
+        },
+        {
+            "weight": 50,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/cyan/recent",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 5,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/cyan/signal",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "location": "chronopyre:tent/cyan/abandoned",
+                "projection": "rigid",
+                "processors": "minecraft:empty"
+            }
         }
     ]
 }
