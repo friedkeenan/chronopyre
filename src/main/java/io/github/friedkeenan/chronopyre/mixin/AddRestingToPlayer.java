@@ -82,7 +82,7 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
 
     private boolean checkCampfireIsValid() {
         return this.getRestingPos().map(rest_pos -> {
-            final var rest_state = this.level.getBlockState(rest_pos);
+            final var rest_state = this.level().getBlockState(rest_pos);
 
             if (!(rest_state.getBlock() instanceof CampfireBlock)) {
                 return false;
@@ -92,7 +92,7 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
                 return false;
             }
 
-            return this.campfireInRange(rest_state.getLightEmission() + 0.5d, rest_pos);
+            return this.campfireInRange(0.5d + rest_state.getLightEmission() / 2.0d, rest_pos);
         }).orElse(false);
     }
 
@@ -105,7 +105,9 @@ public abstract class AddRestingToPlayer extends LivingEntity implements Rester 
 
     @Inject(at = @At("TAIL"), method = "actuallyHurt")
     private void makeDamageStopResting(DamageSource source, float damage, CallbackInfo info) {
-        this.stopResting(true);
+        if (this.isResting()) {
+            this.stopResting(true);
+        }
     }
 
     @WrapOperation(

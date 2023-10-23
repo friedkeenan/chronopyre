@@ -62,13 +62,13 @@ public abstract class SpecializeRestingForServerPlayer extends AddRestingToPlaye
 
         this.asServerPlayer().resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
 
-        ((RestHandler) this.level).updateRestingPlayerList();
+        ((RestHandler) this.level()).updateRestingPlayerList();
 
         return maybe_problem;
     }
 
     private void extinguishCampfireAt(BlockPos rest_pos) {
-        final var rest_state = this.level.getBlockState(rest_pos);
+        final var rest_state = this.level().getBlockState(rest_pos);
 
         if (!(rest_state.getBlock() instanceof CampfireBlock)) {
             return;
@@ -78,23 +78,23 @@ public abstract class SpecializeRestingForServerPlayer extends AddRestingToPlaye
             return;
         }
 
-        this.level.levelEvent(null, 1009, rest_pos, 0);
+        this.level().levelEvent(null, 1009, rest_pos, 0);
 
         final var packet_data = PacketByteBufs.create().writeBlockPos(rest_pos);
-        for (final var player : PlayerLookup.tracking((ServerLevel) this.level, rest_pos)) {
+        for (final var player : PlayerLookup.tracking((ServerLevel) this.level(), rest_pos)) {
             ServerPlayNetworking.send(player, ChronopyreMod.DOWSE_CAMPFIRE_ID, packet_data);
         }
 
-        CampfireBlock.dowse(null, this.level, rest_pos, rest_state);
+        CampfireBlock.dowse(null, this.level(), rest_pos, rest_state);
 
         final var unlit_state = rest_state.setValue(CampfireBlock.LIT, false);
-        this.level.setBlock(rest_pos, unlit_state, 11);
-        this.level.gameEvent(GameEvent.BLOCK_CHANGE, rest_pos, GameEvent.Context.of(null, unlit_state));
+        this.level().setBlock(rest_pos, unlit_state, 11);
+        this.level().gameEvent(GameEvent.BLOCK_CHANGE, rest_pos, GameEvent.Context.of(null, unlit_state));
     }
 
     @Override
     public void stopResting(boolean should_update_resters) {
-        final var server_level = (ServerLevel) this.level;
+        final var server_level = (ServerLevel) this.level();
         final var rest_handler = (RestHandler) server_level;
 
         final var rest_pos = this.getRestingPos().get();
