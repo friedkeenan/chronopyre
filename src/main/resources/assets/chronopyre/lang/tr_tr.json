@@ -1,0 +1,10 @@
+{
+    "block.minecraft.campfire.rest.resting": "Sabaha kadar yatılıyor...",
+    "block.minecraft.campfire.rest.cancel": "Dinlenme iptal edildi",
+    "block.minecraft.campfire.rest.players_resting": "%d/%d oyuncu şuan dinleniyor",
+    "block.minecraft.campfire.rest.already_resting": "Zaten başka bir kamp ateşinde dinleniyorsun",
+    "block.minecraft.campfire.rest.impossible": "Dinlenerek vakit geçirmek imkansız",
+    "block.minecraft.campfire.rest.not_allowed_in_dimension": "Bu boyutta dinlenemezsin",
+    "block.minecraft.campfire.rest.unlit": "Şimdi dinlenemezsin; kamp ateşi sönük",
+    "block.minecraft.campfire.rest.not_possible_now": "Sadece gece veya sağanak yağışlı iken dinlenebilirsin"
+}
