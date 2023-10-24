@@ -1,0 +1,10 @@
+{
+    "block.minecraft.campfire.rest.resting": "Sabaha kadar istirahat ediliyor...",
+    "block.minecraft.campfire.rest.cancel": "İstirahat iptal edildi",
+    "block.minecraft.campfire.rest.players_resting": "%d/%d oyuncu şuan istirahat ediyor",
+    "block.minecraft.campfire.rest.already_resting": "Zaten başka bir kamp ateşinde dinleniyorsun",
+    "block.minecraft.campfire.rest.impossible": "İstirahat ederek vakit geçirmek imkansız",
+    "block.minecraft.campfire.rest.not_allowed_in_dimension": "Bu boyutta istirahat edemezsin",
+    "block.minecraft.campfire.rest.unlit": "İstirahat edebilmek için kamp ateşini yakmalısın",
+    "block.minecraft.campfire.rest.not_possible_now": "Sadece gece veya sağanak yağışlı iken istirahat edebilirsin"
+}
